@@ -3,13 +3,13 @@
 
 <head>
     <title>Covid-19 China visualization</title>
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/d3tip.css">
+    <link rel="stylesheet" href="/d3 Visualization/css/d3tip.css">
+    <link rel="stylesheet" href="/d3 Visualization/css/index.css">
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script type=text/javascript src="js/main.js"></script>
+    <script type=text/javascript src="/d3 Visualization/js/main.js"></script>
     <script src="https://unpkg.com/topojson-client@3"></script>
-    <script src="js/d3-array.js"></script>
-    <script src="js/d3-tip.js"></script>
+    <script src="/d3 Visualization/js/d3-array.js"></script>
+    <script src="/d3 Visualization/js/d3-tip.js"></script>
     <script src="https://unpkg.com/d3-simple-slider"></script>
 
     <!-- element UI -->
@@ -119,7 +119,7 @@
                 .attr("viewBox", [0, 0, width2, height2]);
             barSize = 48
 
-            d3.csv('/data/province1.csv').then(function (data) {
+            d3.csv('/d3 Visualization/data/province1.csv').then(function (data) {
                 // data = d3.csvParse(await FileAttachment("/data/category-brands.csv").text(), d3.autoType);
                 data = data.filter((d) => d['name'] !== "总计");
                 n = 12;
@@ -415,7 +415,7 @@
         var currDate = '';
 
 
-        d3.json('/data/chinaprovince.json').then(
+        d3.json('/d3 Visualization/data/chinaprovince.json').then(
             function (geoData) {
 
                 // convert topo-json to geo-json; 
@@ -464,7 +464,7 @@
 
 
                     d3.select('.svg2').remove()
-                    d3.csv('/data/province.csv').then(function (data) {
+                    d3.csv('/d3 Visualization/data/province.csv').then(function (data) {
                         let {
                             color,
                             properties
@@ -947,6 +947,7 @@
                                 .outerRadius(Math.min(width, height) / 7 * 0.8);
 
                             const arcs = pie(data);
+
                             const g2 = svg.append('g').attr('id', 'secondgroup')
                                 .attr('transform', `translate(1400, 400)`)
                                 .attr('width', 200)
@@ -957,21 +958,57 @@
                                 .data(arcs)
                                 .join("path")
                                 .attr("fill", function (d) {
-                                    switch (d.data.name) {
-                                        case "Confirmed":
-                                            return "#FB9966"
-                                            break;
+                                    if (currMethod.properties.abbv == 'Confirmed') {
+                                        switch (d.data.name) {
+                                            case "Confirmed":
+                                                return "#FB9966"
+                                                break;
 
-                                        case "Recovered":
-                                            return "#F75C2F"
-                                            break;
+                                            case "Recovered":
+                                                return "#F75C2F"
+                                                break;
 
-                                        case "Death":
-                                            return "#CB4042"
-                                            break;
+                                            case "Death":
+                                                return "#CB4042"
+                                                break;
 
-                                        default:
-                                            break;
+                                            default:
+                                                break;
+                                        }
+                                    } else if (currMethod.properties.abbv == 'Recovered') {
+                                        switch (d.data.name) {
+                                            case "Confirmed":
+                                                return "#B5CAA0"
+                                                break;
+
+                                            case "Recovered":
+                                                return "#90B44B"
+                                                break;
+
+                                            case "Death":
+                                                return "#5B622E"
+                                                break;
+
+                                            default:
+                                                break;
+                                        }
+                                    } else {
+                                        switch (d.data.name) {
+                                            case "Confirmed":
+                                                return "#FCFAF2"
+                                                break;
+
+                                            case "Recovered":
+                                                return "#91989F"
+                                                break;
+
+                                            case "Death":
+                                                return "#828282"
+                                                break;
+
+                                            default:
+                                                break;
+                                        }
                                     }
 
                                 })
@@ -1101,7 +1138,7 @@
                             "translate(" + margin.left + "," + margin.top + ")");
 
                     // Parse the Data
-                    d3.csv("/data/province.csv").then(
+                    d3.csv("/d3 Visualization/data/province.csv").then(
                         function (data) {
                             data = data.filter((d) => d['Date'] == day && d['Province'] != '总计');
                             // sort data
