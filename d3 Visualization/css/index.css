@@ -75,7 +75,7 @@ p {
 .charts svg {
   left: 0;
   right: 0;
-  margin: 0 200;
+  overflow: visible;
   position: absolute;
   align-self: center;
 }
@@ -121,7 +121,7 @@ p {
 
 .container {
   flex: 1;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   position: relative;
   height: 100vh;
   max-width: 2000px;
