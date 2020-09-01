@@ -9,9 +9,15 @@
 
 
 
+
+
+
 * 点击某一地区会将其放大并显示它改案例历史的**数量变**化 以及每天的**新增人数**
 
 <img src="d3 Visualization/assets/img_zoomIn.png" alt="image-20200902002303632" style="zoom:150%;" />
+
+
+
 
 
 
@@ -23,15 +29,24 @@
 
 
 
+
+
+
 * 可以通过切换时间线来显示**不同时间**下的密度分布
 
 <img src="d3 Visualization/assets/img_timeLine.png" alt="image-20200902002303632" style="zoom:150%;" />
 
 
 
+
+
+
 * 显示当前时间下 **感染top10**城市对比
 
 <img src="d3 Visualization/assets/img_comparision.png" alt="image-20200902002303632" style="zoom:150%;" />
+
+
+
 
 
 
